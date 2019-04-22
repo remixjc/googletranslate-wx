@@ -1,0 +1,23 @@
+<view class="section">
+  <form bindsubmit="bindFormSubmit">
+   <view class="section">
+    <view class="section__title">请选择原始语言</view>
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="picker">
+          当前选择：{{array[index]}}
+        </view>
+      </picker>
+    </view>
+    <textarea placeholder="请输入要翻译的文本" name="textarea" />
+    <button form-type="submit">翻译(Translate)</button>
+    <view class="section">
+      <view class="section__title">请选择目标语言</view>
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+          <view class="picker">
+            当前选择：{{array[index]}}
+          </view>
+        </picker>
+    </view>
+    <text name="result">此处为翻译结果</text>
+  </form>
+</view>

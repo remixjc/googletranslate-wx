@@ -1,23 +1,44 @@
-<view class="section">
-  <form bindsubmit="bindFormSubmit">
-   <view class="section">
-    <view class="section__title">请选择原始语言</view>
-      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-        <view class="picker">
-          当前选择：{{array[index]}}
-        </view>
-      </picker>
+<cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">Google Translate</view>
+</cu-custom>
+<form>
+  <view class="cu-form-group margin-top">
+    <view class="title">语种</view>
+    <picker bindchange="PickerChange" value="{{index}}" range="{{picker}}" range-key='value'>
+      <view class="picker">
+        {{picker[index].value}}
+      </view>
+    </picker>
+  </view>
+  <view class="cu-form-group margin-top">
+    <textarea data-placeholder="请输入需要翻译的内容" maxlength="-1" disabled="{{modalName!=null}}" placeholder-class="placeholder" class="{{fr?'value':''}}" bindinput="textareaAInput" value='{{fr}}'></textarea>
+  </view>
+  <view class="cu-form-group">
+    <button class="cu-btn bg-green shadow" data-target="Modal" bindtap="translate">翻译(Translate)</button>
+  </view>
+  <view class="cu-modal {{modalName=='Modal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">温馨提示</view>
+      <view class="action" bindtap="hideModal">
+        <text class="icon-close text-red"></text>
+      </view>
     </view>
-    <textarea placeholder="请输入要翻译的文本" name="textarea" />
-    <button form-type="submit">翻译(Translate)</button>
-    <view class="section">
-      <view class="section__title">请选择目标语言</view>
-        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-          <view class="picker">
-            当前选择：{{array[index]}}
-          </view>
-        </picker>
+    <view class="padding-xl">
+      Hello 段今有，暂时还没有加入翻译功能实现哦。
     </view>
-    <text name="result">此处为翻译结果</text>
-  </form>
+  </view>
 </view>
+  <view class="cu-form-group margin-top">
+    <view class="title">目标语种</view>
+    <picker bindchange="PickerChangeTo" value="{{indexTo}}" range="{{pickerTo}}" range-key='value'>
+      <view class="picker">
+        {{pickerTo[indexTo].value}}
+      </view>
+    </picker>
+  </view>
+  <view class="cu-form-group margin-top">
+    <textarea data-placeholder="将会得到翻译结果" maxlength="-1" disabled="{{modalName!=null}}" placeholder-class="placeholder" class="{{to?'value':''}}" bindinput="textareaAInput" value='{{to}}'></textarea>
+  </view>
+</form>

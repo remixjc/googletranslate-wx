@@ -1,92 +1,193 @@
-// pages/googletranslate/googletranslate.js
+const app = getApp();
+var tool=require('./gettk.js');
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    array: ['自动', '中国', '巴西', '日本'],
-    objectArray: [
-      {
-        id: 'auto',
-        name: '自动'
-      },
-      {
-        id: 1,
-        name: '中国'
-      },
-      {
-        id: 2,
-        name: '巴西'
-      },
-      {
-        id: 3,
-        name: '日本'
-      }
-    ],
-    index: 0
+    StatusBar: app.globalData.StatusBar,
+    CustomBar: app.globalData.CustomBar,
+    index: 0,
+    indexTo:0,
+    frLang:'auto',
+    toLang:'zh_CN',
+    tkk:'',
+    fr:'',
+    to:'',
+    picker: [{
+                "key": "auto",
+                "value": "自动识别"
+              },{
+                "key": "zh_CN",
+                "value": "简体中文"
+              }, {
+                "key": "en_US",
+                "value": "English"
+              }, {
+                "key": "zh_Hant",
+                "value": "繁體中文"
+              }, {
+                "key": "ko_KR",
+                "value": "韩语"
+              }, {
+                "key": "ja_JP",
+                "value": "日本語"
+              }, {
+                "key": "th_TH",
+                "value": "ภาษาไทย"
+              }, {
+                "key": "de_DE",
+                "value": "Deutsch"
+              }, {
+                "key": "fr_FR",
+                "value": "Français"
+              }, {
+                "key": "es_ES",
+                "value": "西班牙语"
+              }, {
+                "key": "it_IT",
+                "value": "意大利语"
+              }],
+    pickerTo: [{
+                  "key": "zh_CN",
+                  "value": "简体中文"
+                }, {
+                    "key": "en_US",
+                    "value": "English"
+                  }, {
+                    "key": "zh_Hant",
+                    "value": "繁體中文"
+                  }, {
+                    "key": "ko_KR",
+                    "value": "韩语"
+                  }, {
+                    "key": "ja_JP",
+                    "value": "日本語"
+                  }, {
+                    "key": "th_TH",
+                    "value": "ภาษาไทย"
+                  }, {
+                    "key": "de_DE",
+                    "value": "Deutsch"
+                  }, {
+                    "key": "fr_FR",
+                    "value": "Français"
+                  }, {
+                    "key": "es_ES",
+                    "value": "西班牙语"
+                  }, {
+                    "key": "it_IT",
+                    "value": "意大利语"
+                  }],
+    modalName: null
   },
-
-  bindPickerChange(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+  PickerChange(e) {
+    console.log(e);
     this.setData({
-      index: e.detail.value
+      index: e.detail.value,
+      frLang:this.data.picker[e.detail.value].key
     })
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  PickerChangeTo(e) {
+    console.log(e);
+    this.setData({
+      indexTo: e.detail.value,
+      toLang: this.data.pickerTo[e.detail.value].key
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  TimeChange(e) {
+    this.setData({
+      time: e.detail.value
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  DateChange(e) {
+    this.setData({
+      date: e.detail.value
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  RegionChange: function (e) {
+    this.setData({
+      region: e.detail.value
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  ChooseImage() {
+    wx.chooseImage({
+      count: 4, //默认9
+      sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album'], //从相册选择
+      success: (res) => {
+        if (this.data.imgList.length != 0) {
+          this.setData({
+            imgList: this.data.imgList.concat(res.tempFilePaths)
+          })
+        } else {
+          this.setData({
+            imgList: res.tempFilePaths
+          })
+        }
+      }
+    });
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
+  ViewImage(e) {
+    wx.previewImage({
+      urls: this.data.imgList,
+      current: e.currentTarget.dataset.url
+    });
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
+  DelImg(e) {
+    wx.showModal({
+      title: '召唤师',
+      content: '确定要删除这段回忆吗？',
+      cancelText: '再看看',
+      confirmText: '再见',
+      success: res => {
+        if (res.confirm) {
+          this.data.imgList.splice(e.currentTarget.dataset.index, 1);
+          this.setData({
+            imgList: this.data.imgList
+          })
+        }
+      }
+    })
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  textareaAInput(e) {
+    this.setData({
+      fr: e.detail.value
+    })
+  },
+  textareaBInput(e) {
+    this.setData({
+      to: e.detail.value
+    })
+  },
+  showModal(e) {
+    this.setData({
+      modalName: e.currentTarget.dataset.target
+    })
+  },
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+  },
+  translate(e){
+    var reg = new RegExp("(tkk:')(.*?)(?=')");
+    var tkk='';
+    wx.request({
+      url: 'https://translate.google.cn',
+      success:function(res){
+        var reg = new RegExp("(tkk:')(.*?)(?=')");
+        tkk=res.data.match(reg)[0].substring(5);
+        console.log(tkk);
+      }
+    });
+    if(tkk===''){
+      var tk = tool.tk(this.data.fr, this.data.tkk);
+      console.log(this.data.frLang);
+      console.log('tkk:' + this.data.tkk + ',tk:' + tk + ',frLang:' + this.data.frLang + ',toLang:' + this.data.toLang);
+      //var googleTransUrl = "https://translate.google.cn/translate_a/single?client=t&sl=" + this.data.pickrer[index].key + "&tl=" + req.body.tolang + "&hl=en&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=1&tk=" + tks + "&q=" + encodeURIComponent(req.body.fr);
+      this.setData(
+        {
+          to: 'tkk:' + this.data.tkk + ',tk:' + tk + ',fr:' + this.data.fr
+        }
+      );
+    }
   }
 })

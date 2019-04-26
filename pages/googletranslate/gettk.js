@@ -22,21 +22,6 @@ function tk(a, TKK) {
     return a.toString() + "." + (a ^ h)
   }
 
-  function loadData(tkk){
-    if (tkk != '') {
-      var tk = tool.tk(this.data.fr, this.data.tkk);
-      console.log(this.data.frLang);
-      console.log('tkk:' + this.data.tkk + ',tk:' + tk + ',frLang:' + this.data.frLang + ',toLang:' + this.data.toLang);
-      //var googleTransUrl = "https://translate.google.cn/translate_a/single?client=t&sl=" + this.data.pickrer[index].key + "&tl=" + req.body.tolang + "&hl=en&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=1&tk=" + tks + "&q=" + encodeURIComponent(req.body.fr);
-      this.setData(
-        {
-          to: 'tkk:' + this.data.tkk + ',tk:' + tk + ',fr:' + this.data.fr
-        }
-      );
-    }
-  }
-
 module.exports = {
-  tk:tk,
-  loadData:loadData
+  tk:tk
 }

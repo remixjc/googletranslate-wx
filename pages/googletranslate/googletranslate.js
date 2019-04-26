@@ -170,24 +170,31 @@ Page({
   translate(e){
     var reg = new RegExp("(tkk:')(.*?)(?=')");
     var tkk='';
+    var that=this;
+    console.log(e.detail);
     wx.request({
       url: 'https://translate.google.cn',
       success:function(res){
         var reg = new RegExp("(tkk:')(.*?)(?=')");
         tkk=res.data.match(reg)[0].substring(5);
         console.log(tkk);
+        var tk = tool.tk(that.data.fr, tkk);
+        console.log(that.data.frLang);
+        console.log('tkk:' + tkk + ',tk:' + tk + ',frLang:' + that.data.frLang + ',toLang:' + that.data.toLang);
+        var googleTransUrl = "https://translate.google.cn/translate_a/single?client=t&sl=" + that.data.picker[that.data.index].key + "&tl=" + that.data.toLang + "&hl=en&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=1&tk=" + tk + "&q=" + encodeURIComponent(that.data.fr);
+        wx.request({
+          url: googleTransUrl,
+          success:function(res){
+            var result=res.data[0][0][0];
+            console.log(result);
+            that.setData(
+              {
+                to: result
+              }
+            );
+          }
+        })
       }
     });
-    if(tkk===''){
-      var tk = tool.tk(this.data.fr, this.data.tkk);
-      console.log(this.data.frLang);
-      console.log('tkk:' + this.data.tkk + ',tk:' + tk + ',frLang:' + this.data.frLang + ',toLang:' + this.data.toLang);
-      //var googleTransUrl = "https://translate.google.cn/translate_a/single?client=t&sl=" + this.data.pickrer[index].key + "&tl=" + req.body.tolang + "&hl=en&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=1&tk=" + tks + "&q=" + encodeURIComponent(req.body.fr);
-      this.setData(
-        {
-          to: 'tkk:' + this.data.tkk + ',tk:' + tk + ',fr:' + this.data.fr
-        }
-      );
-    }
   }
 })

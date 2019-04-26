@@ -12,7 +12,7 @@
     </picker>
   </view>
   <view class="cu-form-group margin-top">
-    <textarea data-placeholder="请输入需要翻译的内容" maxlength="-1" disabled="{{modalName!=null}}" placeholder-class="placeholder" class="{{fr?'value':''}}" bindinput="textareaAInput" value='{{fr}}'></textarea>
+    <textarea data-placeholder="请输入需要翻译的内容" maxlength="-1" disabled="{{modalName!=null}}" class="{{fr?'value':''}}" bindinput="textareaAInput" value='{{fr}}'></textarea>
   </view>
   <view class="cu-form-group">
     <button class="cu-btn bg-green shadow" data-target="Modal" bindtap="translate">翻译(Translate)</button>
@@ -26,7 +26,7 @@
       </view>
     </view>
     <view class="padding-xl">
-      Hello 段今有，暂时还没有加入翻译功能实现哦。
+      Hello 暂时还没有加入翻译功能实现哦。
     </view>
   </view>
 </view>
@@ -39,6 +39,7 @@
     </picker>
   </view>
   <view class="cu-form-group margin-top">
-    <textarea data-placeholder="将会得到翻译结果" maxlength="-1" disabled="{{modalName!=null}}" placeholder-class="placeholder" class="{{to?'value':''}}" bindinput="textareaAInput" value='{{to}}'></textarea>
+    <textarea data-placeholder="将会得到翻译结果" maxlength="-1" disabled="{{modalName!=null}}" placeholder-class="placeholder" class="{{to?'value':''}}" bindinput="textareaBInput" value='{{to}}' readonly='readonly'></textarea>
   </view>
+
 </form>

@@ -14,7 +14,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.6.6",
 	"appid": "wx4ecc69341a45e719",
-	"projectname": "googletranslate",
+	"projectname": "googletranslate-wx",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},

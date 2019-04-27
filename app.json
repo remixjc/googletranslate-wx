@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/googletranslate/googletranslate",
     "pages/index/index",
+    "pages/googletranslate/googletranslate",
     "pages/logs/logs"
     
   ],

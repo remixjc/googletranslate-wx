@@ -4,7 +4,8 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
+    motto: 'Welcome to Transfer Grass!',
+    motto_cn:'欢迎来到转运草！',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -15,6 +16,21 @@ Page({
       url: '../logs/logs'
     })
   },
+  translate: function () {
+    wx.navigateTo({
+      url: '../googletranslate/googletranslate'
+    })
+  },
+  showModal(e) {
+    this.setData({
+      modalName: e.currentTarget.dataset.target
+    })
+  }, 
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+  }, 
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({

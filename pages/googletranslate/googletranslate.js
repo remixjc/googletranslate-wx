@@ -2,6 +2,7 @@ const app = getApp();
 var tool=require('./gettk.js');
 Page({
   data: {
+    github:'https://github.com/remixjc/googletranslate-wx',
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
     index: 0,

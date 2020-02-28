@@ -21,6 +21,11 @@ Page({
       url: '../googletranslate/googletranslate'
     })
   },
+  database: function () {
+    wx.navigateTo({
+      url: '../database/database'
+    })
+  },
   showModal(e) {
     this.setData({
       modalName: e.currentTarget.dataset.target

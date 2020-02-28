@@ -1,0 +1,3 @@
+<cu-custom bgColor="bg-gradual-green" isBack="{{true}}">
+  <view slot="content">云数据库测试</view>
+</cu-custom>

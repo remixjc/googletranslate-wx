@@ -8,10 +8,11 @@
 	<button class="cu-btn bg-pink shadow" style='width:100%;' bindtap="insert">添加留言</button>
 </view>
 <view class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}">
-	<view class="cu-item {{menuArrow?'arrow':''}}">
-		<view class="content title bg-green"><text>留言列表</text> </view>
+	<view class="title">
+		<button class="cu-btn bg-green shadow" style='width:100%;' bindtap="insert">留言列表</button>
 	</view>
 	<view class="cu-item {{menuArrow?'arrow':''}}" wx:for="{{info_list}}" wx:for-index="index" wx:for-item="item">
+		<view>{{item.createDate}}</view>
 		<view class="content">
 			<image src="{{item.avatarUrl}}" class="png" mode="aspectFit"></image> <text class="text-grey">{{item.username}}:{{item.topic}}</text>
 		</view>

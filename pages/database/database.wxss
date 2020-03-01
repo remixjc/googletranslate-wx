@@ -2,3 +2,10 @@
 .title{
   align-items: center;
 }
+.cu-list.menu>.cu-item{
+  display: block;
+  color: black;
+}
+.title{
+  padding-top: 5px;
+}

@@ -72,7 +72,7 @@ Component({
      */
     loadData: function () {
       const db = wx.cloud.database();
-      db.collection("counters").get().then(res => {
+      db.collection("counters").orderBy('createDate', 'desc').get().then(res => {
         this.setData({
           info_list: res.data
         })

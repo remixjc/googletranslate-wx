@@ -22,9 +22,18 @@ Page({
     })
   },
   database: function () {
-    wx.navigateTo({
-      url: '../database/database'
-    })
+    if (app.globalData.userInfo) {
+      wx.navigateTo({
+        url: '../database/database'
+      })
+    }else{
+      wx.showToast({
+        title: '请点击登录',
+        icon: 'error',
+        duration: 1500,
+        mask: true
+      });
+    }
   },
   showModal(e) {
     this.setData({

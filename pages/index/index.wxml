@@ -1,37 +1,40 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="showModal" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover" data-target="Modal"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <button class="cu-btn bg-green shadow" style='width:100%;' data-target="Modal" bindtap="translate">谷歌翻译(Google Translate)</button>
-    </view>
-    <view class="database">
-    <button class="cu-btn bg-pink shadow" style='width:100%;'  data-target="Modal" bindtap="database">留 言 板</button>
-  </view>
-  <view class="cu-modal {{modalName=='Modal'?'show':''}}">
-    <view class="cu-dialog">
-      <view class="cu-bar bg-white justify-end">
-        <view class="content">欢迎您 “{{userInfo.nickName}}”</view>
-        <view class="action" bindtap="hideModal">
-          <text class="icon-close text-red"></text>
-        </view>
-      </view>
-      <view class="padding-xl">
-        <text>您好，“{{userInfo.nickName}}”,欢迎关注转运草！
+	<view class="userinfo">
+		<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+		<block wx:else>
+			<image bindtap="showModal" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover" data-target="Modal"></image>
+			<text class="userinfo-nickname">{{userInfo.nickName}}</text>
+		</block>
+	</view>
+	<view class="usermotto">
+		<button class="cu-btn bg-green shadow" style='width:100%;' data-target="Modal" bindtap="translate">谷歌翻译(Google Translate)</button>
+	</view>
+	<view class="database">
+		<button class="cu-btn bg-pink shadow" style='width:100%;' data-target="Modal" bindtap="database">留 言 板</button>
+	</view>
+	<view class="database">
+		<button class="cu-btn bg-blue shadow" style='width:100%;' data-target="Modal" bindtap="github">Github项目地址</button>
+	</view>
+	<view class="cu-modal {{modalName=='Modal'?'show':''}}">
+		<view class="cu-dialog">
+			<view class="cu-bar bg-white justify-end">
+				<view class="content">欢迎您 “{{userInfo.nickName}}”</view>
+				<view class="action" bindtap="hideModal">
+					<text class="icon-close text-red"></text>
+				</view>
+			</view>
+			<view class="padding-xl">
+				<text>您好，“{{userInfo.nickName}}”,欢迎关注转运草！
         您可以通过下方的按钮进入对应功能~
         功能持续扩展中~
         可以关注对应功能下的github项目进展。
         在此感谢colorui提供样式支持。</text>
-      </view>
-    </view>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}} </text>
-    <text class="user-motto">{{motto_cn}}</text>
-  </view>
+			</view>
+		</view>
+	</view>
+	<view class="usermotto">
+		<text class="user-motto">{{motto}} </text>
+		<text class="user-motto">{{motto_cn}}</text>
+	</view>
 </view>

@@ -9,11 +9,11 @@
 </view>
 <view class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}">
 	<view class="cu-item {{menuArrow?'arrow':''}}">
-		<view class="content"> <text class="cuIcon-circlefill text-grey"></text> <text class="text-grey">图标 + 标题</text> </view>
+		<view class="content title bg-green"><text>留言列表</text> </view>
 	</view>
-	<view class="cu-item {{menuArrow?'arrow':''}}">
+	<view class="cu-item {{menuArrow?'arrow':''}}" wx:for="{{info_list}}" wx:for-index="index" wx:for-item="item">
 		<view class="content">
-			<image src="/images/logo.png" class="png" mode="aspectFit"></image> <text class="text-grey">图片 + 标题</text>
+			<image src="{{item.avatarUrl}}" class="png" mode="aspectFit"></image> <text class="text-grey">{{item.username}}:{{item.topic}}</text>
 		</view>
 	</view>
 </view>

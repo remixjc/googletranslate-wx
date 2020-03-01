@@ -1,1 +1,4 @@
 /* pages/database/database.wxss */
+.title{
+  align-items: center;
+}

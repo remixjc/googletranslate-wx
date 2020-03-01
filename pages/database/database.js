@@ -1,4 +1,5 @@
 // pages/database/database.js
+var util = require('../../utils/util.js');
 //获取应用实例
 const app = getApp()
 Component({
@@ -13,7 +14,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-    topic: ''
+    topic: '',
+    info_list: null
   },
 
   /**
@@ -27,8 +29,10 @@ Component({
       const db = wx.cloud.database();
       db.collection('counters').add({
         data: {
+          username: app.globalData.userInfo.nickName,
           topic: this.data.topic,
-          username: app.globalData.userInfo.nickName
+          avatarUrl: app.globalData.userInfo.avatarUrl,
+          createDate: util.formatTime(new Date())
         },
         success: res => {
           console.log(res);
@@ -41,6 +45,7 @@ Component({
             duration: 1000,
             mask: true
           })
+          this.loadData();
         },
         fail: res => {
           console.log(err)
@@ -59,6 +64,18 @@ Component({
         icon: 'succes',
         duration: 1000,
         mask: true
+      });
+      this.loadData();
+    },
+    /**
+     * 加载留言
+     */
+    loadData: function () {
+      const db = wx.cloud.database();
+      db.collection("counters").get().then(res => {
+        this.setData({
+          info_list: res.data
+        })
       })
     }
   }

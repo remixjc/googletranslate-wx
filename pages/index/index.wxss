@@ -18,7 +18,9 @@
 
 .usermotto {
   margin-top: 200px;
+  width: 100%;
 }
 .database{
   margin-top: 5px;
+  width: 100%;
 }

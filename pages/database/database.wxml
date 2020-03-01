@@ -1,3 +1,19 @@
-<cu-custom bgColor="bg-gradual-green" isBack="{{true}}">
-  <view slot="content">云数据库测试</view>
+<cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
+	<view slot="content">留言板</view>
 </cu-custom>
+<view class="cu-form-group">
+	<textarea data-placeholder="请输入留言内容" maxlength="-1" disabled="{{modalName!=null}}" class="{{topic?'value':''}}" bindinput="textareaInput" value='{{topic}}'></textarea>
+</view>
+<view>
+	<button class="cu-btn bg-pink shadow" style='width:100%;' bindtap="insert">添加留言</button>
+</view>
+<view class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}">
+	<view class="cu-item {{menuArrow?'arrow':''}}">
+		<view class="content"> <text class="cuIcon-circlefill text-grey"></text> <text class="text-grey">图标 + 标题</text> </view>
+	</view>
+	<view class="cu-item {{menuArrow?'arrow':''}}">
+		<view class="content">
+			<image src="/images/logo.png" class="png" mode="aspectFit"></image> <text class="text-grey">图片 + 标题</text>
+		</view>
+	</view>
+</view>

@@ -8,10 +8,10 @@
     </block>
   </view>
   <view class="usermotto">
-    <button class="cu-btn bg-green" data-target="Modal" bindtap="translate">谷歌翻译(Google Translate)</button>
+    <button class="cu-btn bg-green shadow" style='width:100%;' data-target="Modal" bindtap="translate">谷歌翻译(Google Translate)</button>
     </view>
     <view class="database">
-    <button class="cu-btn bg-green" data-target="Modal" bindtap="database">数据库测试(Database Test)</button>
+    <button class="cu-btn bg-pink shadow" style='width:100%;'  data-target="Modal" bindtap="database">留 言 板</button>
   </view>
   <view class="cu-modal {{modalName=='Modal'?'show':''}}">
     <view class="cu-dialog">

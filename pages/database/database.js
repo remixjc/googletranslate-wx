@@ -26,6 +26,17 @@ Component({
      * 插入方法
      */
     insert: function () {
+      if(!this.data.topic){
+        wx.showModal({
+          cancelColor: 'cancelColor',
+          title:'提示',
+          content:'请输入留言内容！',
+          success(res){
+            console.log(res)
+          }
+        })
+        return;
+      }
       const db = wx.cloud.database();
       db.collection('counters').add({
         data: {

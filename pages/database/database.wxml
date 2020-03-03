@@ -9,7 +9,7 @@
 </view>
 <view class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}">
 	<view class="title">
-		<button class="cu-btn bg-green shadow" style='width:100%;' bindtap="insert">留言列表</button>
+		<button class="cu-btn bg-green shadow" style='width:100%;'>留言列表</button>
 	</view>
 	<view class="cu-item {{menuArrow?'arrow':''}}" wx:for="{{info_list}}" wx:for-index="index" wx:for-item="item">
 		<view>{{item.createDate}}</view>

@@ -2,19 +2,33 @@
 	<view slot="content">留言板</view>
 </cu-custom>
 <view class="cu-form-group">
-	<textarea data-placeholder="请输入留言内容" maxlength="-1" disabled="{{modalName!=null}}" class="{{topic?'value':''}}" bindinput="textareaInput" value='{{topic}}'></textarea>
+	<textarea data-placeholder="请输入留言内容" maxlength="-1" disabled="{{modalName!=null}}" class="{{topic?'value':''}}"
+		bindinput="textareaInput" value='{{topic}}' fixed=""></textarea>
 </view>
 <view>
 	<button class="cu-btn bg-pink shadow" style='width:100%;' bindtap="insert">添加留言</button>
 </view>
 <view class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}">
-	<view class="title">
-		<button class="cu-btn bg-green shadow" style='width:100%;'>留言列表</button>
-	</view>
-	<view class="cu-item {{menuArrow?'arrow':''}}" wx:for="{{info_list}}" wx:for-index="index" wx:for-item="item">
-		<view>{{item.createDate}}</view>
-		<view class="content">
-			<image src="{{item.avatarUrl}}" class="png" mode="aspectFit"></image> <text class="text-grey">{{item.username}}:{{item.topic}}</text>
+	<view class="cu-bar bg-white solid-bottom margin-top">
+		<view data-time="{{lastTapTime}}" class="action" bindtap="doubleClick">
+			<text class="cuIcon-title text-green "></text> 🍀 留言列表
 		</view>
 	</view>
+	<view class="cu-list menu-avatar">
+    <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{info_list}}" wx:key="item" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
+      <view class="cu-avatar round lg" style="background-image:url({{item.avatarUrl}});"></view>
+      <view class="content">
+        <view class="text-grey">{{item.username}}</view>
+        <view class="text-gray text-xs">
+          <text class="cuIcon-infofill text-pink"></text> {{item.topic}}</view>
+      </view>
+      <view class="action">
+        <view class="text-grey text-xs">{{item.createDate}}</view>
+        <view class="cu-tag round bg-grey sm">🍀</view>
+      </view>
+      <view class="move">
+        <view class="bg-red" bindtap="delete" id="{{item._id}}">删除</view>
+      </view>
+    </view>
+  </view>
 </view>

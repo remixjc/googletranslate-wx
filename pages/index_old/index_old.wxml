@@ -1,0 +1,49 @@
+<!--index.wxml-->
+<view class="container" style="background-image:url('https://7472-transitgrass-5g928kmqdfe8e7a5-1258975863.tcb.qcloud.la/images/grass.jpg');background-size:auto;">
+  <view class="userinfo" style="margin-top:100px">
+    <block wx:if="{{!hasUserInfo}}">
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="https://7472-transitgrass-5g928kmqdfe8e7a5-1258975863.tcb.qcloud.la/images/logo.png" mode="cover"></image>
+      <text class="userinfo-nickname">欢迎光临转运草！</text>
+			<!--<button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile" type="primary"> 登录 </button>-->
+    </block>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">欢迎您，{{userInfo.nickName}}</text>
+    </block>
+  </view>
+	<view class="usermotto">
+		<button class="cu-btn bg-green shadow" style='width:100%;' data-target="Modal" bindtap="translate">谷歌翻译</button>
+	</view>	<view class="database">
+		<button class="cu-btn bg-red shadow" style='width:100%;' data-target="Modal" bindtap="kaoqin">考勤打卡</button>
+	</view>
+	<view class="database">
+		<button class="cu-btn bg-pink shadow" style='width:100%;' data-target="Modal" bindtap="database">留 言 板</button>
+	</view>
+	<view class="database">
+		<button class="cu-btn bg-blue shadow" style='width:100%;' data-target="Modal" bindtap="github">项目地址</button>
+	</view>
+	<view class="database">
+		<button class="cu-btn bg-orange shadow" style='width:100%;' open-type="contact">联系客服</button>
+	</view>
+	<view class="cu-modal {{modalName=='Modal'?'show':''}}">
+		<view class="cu-dialog">
+			<view class="cu-bar bg-white justify-end">
+				<view class="content">欢迎您 “{{userInfo.nickName}}”</view>
+				<view class="action" bindtap="hideModal">
+					<text class="icon-close text-red"></text>
+				</view>
+			</view>
+			<view class="padding-xl">
+				<text>您好，“{{userInfo.nickName}}”,欢迎关注转运草！
+        您可以通过下方的按钮进入对应功能~
+        功能持续扩展中~
+        可以关注对应功能下的github项目进展。
+        在此感谢colorui提供样式支持。</text>
+			</view>
+		</view>
+	</view>
+	<view class="usermotto" style="color:white;margin-top:150px">
+		<text class="user-motto">{{motto}} </text>
+		<text class="user-motto">{{motto_cn}}</text>
+	</view>
+</view>
